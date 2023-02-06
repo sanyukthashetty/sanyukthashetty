@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include <string.h>
+int main()
+{
+	 char username[20],password[20];
+	for(int i=1;i<=3;i++)
+	{
+		printf("USERNAME:");
+		scanf("%s",username);
+		
+		if(strcasecmp(username,"admin")==0) //tccor gcc we can use strcasecmp()
+		{	printf("\nPASSWORD:");
+			scanf("%s",password);
+			if(!strcmp(password,"admin"))
+				printf("login successfull");
+				return 0; //terminate the application or exit(0)-->stlib.h
+			else
+				printf("invalid password");
+		}
+		else
+			printf("invalid username");
+	}
+	printf("your account has been lock.It will unlocked after 30 seconds");
+ 	
+	return 0;
+}
