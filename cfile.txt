@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE *fptr;
+    char filename[30];
+    scanf("%s",filename);
+    //opening<filename> for writting content
+    fptr=fopen(filename,"a");
+    //checking whether the file is created or not
+    if(fptr==NULL)
+    {
+        printf("file creation error");
+        exit(0);
+    }
+    //file is created
+    while(1)
+    {
+        char ch;
+        //getting character
+        ch=getc(stdin);
+        //checking whether the character is the end of file
+        if(ch=='Q') break;
+        //otherwise write that character into file
+        fputc(ch,fptr);
+       
+    }
+     printf("%s file saved!",filename);
+     //closing that file
+     fclose(fptr);
+    return 0;
+}
