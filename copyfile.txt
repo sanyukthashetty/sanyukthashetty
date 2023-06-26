@@ -1,0 +1,44 @@
+//program to copy a content from a file
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE *fptr1,*fptr2;
+    char sourcename[30];
+    char targetname[30];
+    
+    
+    printf("enter the source file name:");
+    scanf("%s",sourcename);
+    fptr1=fopen(sourcename,"r");
+    if(fptr1==NULL)
+    {
+        printf("%s does not exixt",sourcename);
+        exit(0);
+    }
+     
+     
+    printf("enter the target file name:");
+    scanf("%s",targetname);
+    fptr2=fopen(targetname,"w");
+    if(fptr2==NULL)
+    {
+        printf("%s does not exixt",targetname);
+        exit(0);
+    }
+   
+    
+    char ch = fgetc(fptr1);
+    while(ch!=EOF)
+    {
+       
+            fputc(ch,fptr2);
+            ch= fgetc(fptr1);
+       
+    }
+    
+   printf("%s is copied to %s",sourcename,targetname);
+     fclose(fptr1);
+     fclose(fptr2);
+    return 0;
+}
