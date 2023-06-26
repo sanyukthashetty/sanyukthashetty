@@ -1,0 +1,30 @@
+//program to read a content from a file
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE *fptr;
+    char filename[30];
+    printf("enter the file name:");
+    scanf("%s",filename);
+    //opening<filename> for read content
+    fptr=fopen(filename,"r");
+    if(fptr==NULL)
+    {
+        printf("%s does not exixt",filename);
+        exit(0);
+    }
+    //file is created
+    while(1)
+    {
+        char ch = fgetc(fptr);
+        //checking whether the character is the end of file
+        if(ch==EOF) break;
+        //otherwise write that character into file
+        putc(ch,stdout);
+       
+    }
+   
+     fclose(fptr);
+    return 0;
+}
