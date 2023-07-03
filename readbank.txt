@@ -1,0 +1,39 @@
+//program to store block of bytes using fwrite()
+#include <stdio.h>
+typedef struct bank{
+    int accno;
+    char acname[30];
+    double balance;
+    
+}bank;
+void printDetails(bank customer)
+{
+    
+    printf("account number:     %d\n",customer.accno);
+    printf("account name:     %s\n",customer.acname);
+     printf("balance:    %.2lf\n",customer.balance);
+   
+}
+
+int main()
+{
+
+    bank customer;
+    FILE *fptr;
+    char filename[30];
+    printf("enter database name:");
+    scanf("%s",filename);
+   
+    fptr= fopen(filename,"r");//append & read
+     if(fptr==NULL)
+    {
+        printf("file creation error !");
+        return 0;
+    }
+    //file is opened
+  fread(&customer,sizeof(customer),1,fptr);
+  printDetails(customer);
+    //writying block of bytes into the file pointer
+    fclose(fptr);
+    return 0;
+}
