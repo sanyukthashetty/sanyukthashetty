@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include"bank.h"
+int main()
+{
+    bank customer;
+    FILE*fptr;
+    char filename[30];
+    printf("enter database name:");
+    scanf("%s",filename);
+    fptr=fopen(filename,"r");
+    if(fptr==NULL)
+    {
+        printf("file creation error!");
+        return 0;
+    }
+    while(1)
+    {
+        fread(&customer,sizeof(customer),1,fptr);
+        if(feof(fptr))break;
+        printDetails(customer);
+    }
+    
+    
+    fclose(fptr);
+    return 0;
+    
+}
+
+bank.h
+
+typedef struct bank
+{
+    int accno;
+    char acname[30];
+    double balance;
+}bank;
+void printDetails(bank customer)
+{
+    printf("account number: %d\n",customer.accno);
+    printf("account name:%s\n",customer.acname);
+    printf("balance: %.2lf",customer.balance);
+}
+
+
+
+
+
